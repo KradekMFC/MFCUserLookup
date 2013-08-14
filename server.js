@@ -12,6 +12,9 @@ var port = process.env.PORT || 1337;
 app.get('/', function(req, res, next) {
     var socket = new MFCSocket();
 
+    if (!req.query.username)
+        res.json({error:"No username provided."});
+
     socket.listen("error", function(err){
         res.json({error: "A socket error occurred.", detail: err});
     });
