@@ -31,7 +31,7 @@ app.get('/', function(req, res, next) {
                 return;
             //return an error if MFC returned one
             if (m.Arg2 == MFCResponseType.FCRESPONSE_ERROR)
-                res.json({error: "User does not exist or MFC error."})
+                res.json({error: "User does not exist or MFC error.", detail: m})
 
             //return the data package on a successful response
             res.json(m.Data);
