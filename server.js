@@ -11,14 +11,29 @@ var port = process.env.PORT || 1337;
 
 app.get('/', function(req, res, next) {
     var socket = new MFCSocket();
+
+    socket.listen("error", function(err){
+        res.json({error: "A socket error occurred.", detail: err});
+    });
+
+    socket.listen("close", function(msg){
+        res.json({error: "Socket closed unexpectedly.", detail: msg});
+    })
+
+    //set up a listener for login completion
     socket.listen("loggedin", function(e){
+        //send the lookup
         socket.send(new MFCMessage({Type: MFCMessageType.FCTYPE_USERNAMELOOKUP, From: 0, To: 0, Arg1: 20, Arg2: 0, Data: req.query.username}));
+        //listen for a lookup response
         socket.listen("message", function(m){
+            //leave if the message isn't a userlookup response
             if (!(m.Type == MFCMessageType.FCTYPE_USERNAMELOOKUP))
                 return;
+            //return an error if MFC returned one
             if (m.Arg2 == MFCResponseType.FCRESPONSE_ERROR)
                 res.json({error: "User does not exist or MFC error."})
 
+            //return the data package on a successful response
             res.json(m.Data);
         })
     });
