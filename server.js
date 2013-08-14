@@ -10,15 +10,19 @@ var app = express();
 var port = process.env.PORT || 1337;
 
 app.get('/', function(req, res, next) {
-    var socket = new MFCSocket();
-
+    //leave if there is no username
     if (!req.query.username)
         res.json({error:"No username provided."});
 
+    //create a socket to do the lookup
+    var socket = new MFCSocket();
+
+    //listen for socket errors
     socket.listen("error", function(err){
         res.json({error: "A socket error occurred.", detail: err});
     });
 
+    //listen for the socket closing
     socket.listen("close", function(msg){
         res.json({error: "Socket closed unexpectedly.", detail: msg});
     })
@@ -43,7 +47,6 @@ app.get('/', function(req, res, next) {
 });
 
 app.listen(port);
-
 
 function MFCSocket(name, passCode){
     //list of websocket chat servers
