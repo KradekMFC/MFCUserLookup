@@ -1,10 +1,12 @@
 var express = require('express');
+var cors = require('cors');
 var MFCSocket = require('MFCSocket');
 var MFCMessageType = require('MFCSocket').MFCMessageType;
 var MFCResponseType = require('MFCSocket').MFCResponseType;
 var UserLookup = require('MFCSocket').UserLookup;
 
 var app = express();
+app.use(cors());
 
 var port = process.env.PORT || 1337;
 
