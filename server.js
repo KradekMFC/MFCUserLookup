@@ -1,8 +1,8 @@
 var express = require('express');
 var MFCSocket = require('MFCSocket');
-var MFCMessage = require('MFCSocket').MFCMessage;
 var MFCMessageType = require('MFCSocket').MFCMessageType;
 var MFCResponseType = require('MFCSocket').MFCResponseType;
+var UserLookup = require('MFCSocket').UserLookup;
 
 var app = express();
 
@@ -29,7 +29,7 @@ app.get('/', function(req, res, next) {
     //set up a listener for login completion
     socket.listen("loggedin", function(e){
         //send the lookup
-        socket.send(new MFCMessage({Type: MFCMessageType.FCTYPE_USERNAMELOOKUP, From: 0, To: 0, Arg1: 20, Arg2: 0, Data: req.query.username}));
+        socket.send(new UserLookup(req.query.username));
         //listen for a lookup response
         socket.listen("message", function(m){
             //leave if the message isn't a userlookup response
