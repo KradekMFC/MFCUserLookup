@@ -1,0 +1,16 @@
+{
+  "author": {
+    "name": "KradekMFC",
+    "email": "kradekmfc@gmail.com"
+  },
+  "name": "MFCUserLookup",
+  "description": "Node server for returning MFC user lookups",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KradekMFC/MFCUserLookup.git"
+  },
+  "dependencies": {
+    "MFCSocket": "git://github.com/KradekMFC/MFCSocket.git"
+  }
+}
