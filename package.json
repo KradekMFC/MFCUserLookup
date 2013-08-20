@@ -11,6 +11,6 @@
     "url": "https://github.com/KradekMFC/MFCUserLookup.git"
   },
   "dependencies": {
-    "MFCSocket": "git://github.com/KradekMFC/MFCSocket.git"
+    "MFCSocket": "git://github.com/KradekMFC/MFCSocket.git#v0.0.2"
   }
 }
