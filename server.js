@@ -4,6 +4,9 @@ var request = require('request');
 var MFCSocket = require('MFCSocket');
 var MFCMessageType = require('MFCSocket').MFCMessageType;
 var MFCResponseType = require('MFCSocket').MFCResponseType;
+var UserLookup = require('MFCSocket').UserLookup;
+
+
 
 var app = express();
 app.use(cors());
