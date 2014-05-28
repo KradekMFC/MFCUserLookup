@@ -14,7 +14,7 @@ app.use(cors());
 var port = process.env.PORT || 1337;
 
 app.get('/', function (req, res, next) {
-    //bob
+    //bob 2
     //leave if there is no username
     if (!req.query.username)
         res.json({error:"No username provided."});
